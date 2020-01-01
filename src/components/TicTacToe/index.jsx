@@ -38,10 +38,6 @@ export default class extends Component{
           this.setState({squares : Array(9).fill(null)});
           this.setState({count : 0})
         }, 1500);
-      }else{
-        setTimeout(()=>{
-          alert ("Победила дружба!");
-        },500);
       }
 
     }
