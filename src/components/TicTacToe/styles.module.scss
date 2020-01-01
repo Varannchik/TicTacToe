@@ -1,0 +1,19 @@
+.pole{
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.grid{
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    font-size: 35px;
+    display: flow-root;
+    align-items: center;
+    text-align: center;
+
+}
