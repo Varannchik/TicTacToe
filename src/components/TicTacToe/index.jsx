@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './styles.module.scss';
 
+
 export default class extends Component{
   constructor(props){
     super(props);
@@ -24,7 +25,10 @@ export default class extends Component{
       [2, 4, 6]
     ]    
   }
-  
+  renderGrid(i) {        
+    return <div className={styles.grid} onClick={this.clickHandler} data={i}>{this.state.squares[i]}</div>;
+  }
+
   isWinner = () =>{
     let s = (this.state.count % 2 ===0) ? "x" : "o";
     for (let i=0; i<8; i++){
@@ -61,7 +65,19 @@ export default class extends Component{
     return (
       <div>
         <div className={styles.pole}>
-          <div className={styles.grid} onClick={this.clickHandler} data="0">{this.state.squares[0]}</div>
+          {this.renderGrid(0)}
+          {this.renderGrid(1)}
+          {this.renderGrid(2)}
+
+          {this.renderGrid(3)}
+          {this.renderGrid(4)}
+          {this.renderGrid(5)}
+
+          {this.renderGrid(6)}
+          {this.renderGrid(7)}
+          {this.renderGrid(8)}
+
+          {/* <div className={styles.grid} onClick={this.clickHandler} data="0">{this.state.squares[0]}</div>
           <div className={styles.grid} onClick={this.clickHandler} data="1">{this.state.squares[1]}</div>
           <div className={styles.grid} onClick={this.clickHandler} data="2">{this.state.squares[2]}</div>
 
@@ -71,7 +87,7 @@ export default class extends Component{
 
           <div className={styles.grid} onClick={this.clickHandler} data="6">{this.state.squares[6]}</div>
           <div className={styles.grid} onClick={this.clickHandler} data="7">{this.state.squares[7]}</div>
-          <div className={styles.grid} onClick={this.clickHandler} data="8">{this.state.squares[8]}</div>
+          <div className={styles.grid} onClick={this.clickHandler} data="8">{this.state.squares[8]}</div> */}
         </div>
       </div>
     )
