@@ -13,26 +13,22 @@ export default class extends Component{
         }
     }
     
-    clickHandler = (id) => {
-        console.log( "id: "+ id)
-       
-        const newState = update(this.state, {count:{$set: id}
-        });
-
+    clickHandler = (id) => {             
+        const newState = update(this.state, {count:{$set: id}});
+        console.log( "id: "+ id)  
         console.log("cells: "+ this.state.cells);
         console.log("count: "+ this.state.count);
         
         
         let curSquare = this.state.cells;
 
-        if(curSquare[id] === null){
-            console.log('click')
-        curSquare[id] = (this.state.count % 2 === 0) ? "x" : "o"; //если четное пишем х ,если нет пишем о
-        this.setState({count: this.state.count + 1});
-        this.setState({cells: curSquare});
+        if(curSquare[id] === null){        
+            curSquare[id] = (this.state.count % 2 === 0) ? "x" : "o"; //если четное пишем х ,если нет пишем о            
+            this.setState({count: this.state.count + 1});
+            this.setState({cells: curSquare});            
         }
         
-        this.setState(newState);
+        //this.setState(newState);
     }
 
     checkX =()=>{
@@ -49,7 +45,8 @@ export default class extends Component{
         
         return (
             <div className={styles.pole} >
-                {this.state.cells.map((el, idx)=> <Cell id={idx} func={this.clickHandler} count={this.state.count}/>)}
+                {this.state.cells.map((el, idx)=> <Cell id={idx} func={this.clickHandler} count={this.state.count} cells={this.state.cells[idx]}
+                />)}
             </div>
         )
     }
