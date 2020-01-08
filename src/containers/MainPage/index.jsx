@@ -1,10 +1,10 @@
 import React from 'react';
-import TicTacToe from '../../components/TicTacToe';
+import Field from '../../components/Field';
 
 export default function(){
   return(
     <>
-      <TicTacToe />
+      <Field />
     </>
   )
 }
