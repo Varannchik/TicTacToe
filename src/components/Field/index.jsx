@@ -21,21 +21,15 @@ export default class extends Component{
     }
 
     // checkX =()=>{
-    //     let length = this.lengthArrCells();
+    //     //let length = this.lengthArrCells();
+    //     console.log("wwww1")
     //     let s = (this.state.count % 2 ===0) ? "x" : "o";
-    //     let win=0;
-    //     //let i = 0;
-    //     // do {
-    //     //     if(this.state.cells[i] === s && this.state.cells[i+1] === s && this.state.cells[i+2] === s){
-    //     //         win=1;
-    //     //         return(win);
-    //     //     }
-    //     //   } while (i<=length);
-
-    //     for (let i=0; i<length; i++){
+    //     for (let i=0; i<9; i++){
     //         if(this.state.cells[i] === s && this.state.cells[i+3] === s && this.state.cells[i+6] === s){
-    //             win=1;
-    //             return(win);
+    //             console.log("wwww2")
+    //             this.setState({user: s})
+    //             this.setState({win: 1});
+    //             return (this.state.win);
     //         }
     //     }
     // }
@@ -65,24 +59,27 @@ export default class extends Component{
             this.setState({count: this.state.count+1});
             this.setState({cells: curSquare});
         }
-        // this.checkX();
+        //this.checkX();
         this.checkY();
     }
 
     render(){
         
         if(this.state.win === 1){
-            this.setState({cells : Array(9).fill(null)});
-            this.setState({count : 0})
-            this.setState({win : 0})
-            return (<h1><div> {this.state.user} is winner!</div></h1>)
-        }
-
-        return (
+            return (
+                <div className={styles.pole} >
+                    <h1> {this.state.user} is winner!</h1>
+                </div>
+            )
+        }else{
+            return (
             <div className={styles.pole} >
                 {this.state.cells.map((el, idx)=> <Cell id={idx} func={this.clickHandler} count={this.state.count} cells={this.state.cells[idx]}
                 />)}
             </div>
         )
+        }
+
+        
     }
 };
