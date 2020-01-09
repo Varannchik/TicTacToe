@@ -9,7 +9,9 @@ export default class extends Component{
         super(props);
         this.state = {
             cells : Array(9).fill(null),
-            count : 0
+            count : 0,
+            win: 0,
+            user: ''
         }
     }
 
@@ -41,15 +43,12 @@ export default class extends Component{
     checkY =()=>{
         let length = this.lengthArrCells();
         let s = (this.state.count % 2 ===0) ? "x" : "o";
-        
         for (let i=0; i<length; i++){
             if(this.state.cells[i] === s && this.state.cells[i+3] === s && this.state.cells[i+6] === s){
-                let win=1;
-                console.log(this.state.cells[i], this.state.cells[i+3], this.state.cells[i+6])
-                console.log(win)
-                return win;
+                this.setState({user: s})
+                this.setState({win: 1});
+                return (this.state.win);
             }
-           
         }
     }
 
@@ -58,7 +57,6 @@ export default class extends Component{
     }
     
     clickHandler = (id) => {
-        
         const newState = update(this.state, {count:{$set: id}});
         this.setState(newState);
         let curSquare = this.state.cells;
@@ -73,13 +71,11 @@ export default class extends Component{
 
     render(){
         
-
-        // let b = this.checkY();
-        //console.log(this.checkY());
-        if(this.win === 1){
+        if(this.state.win === 1){
             this.setState({cells : Array(9).fill(null)});
             this.setState({count : 0})
-            return (<h1><div> is winner!</div></h1>)
+            this.setState({win : 0})
+            return (<h1><div> {this.state.user} is winner!</div></h1>)
         }
 
         return (
