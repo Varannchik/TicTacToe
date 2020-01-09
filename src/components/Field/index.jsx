@@ -20,19 +20,17 @@ export default class extends Component{
         return sideOfSquare
     }
 
-    // checkX =()=>{
-    //     //let length = this.lengthArrCells();
-    //     console.log("wwww1")
-    //     let s = (this.state.count % 2 ===0) ? "x" : "o";
-    //     for (let i=0; i<9; i++){
-    //         if(this.state.cells[i] === s && this.state.cells[i+3] === s && this.state.cells[i+6] === s){
-    //             console.log("wwww2")
-    //             this.setState({user: s})
-    //             this.setState({win: 1});
-    //             return (this.state.win);
-    //         }
-    //     }
-    // }
+    checkX =()=>{  
+        let length = this.state.cells.length; 
+        let s = (this.state.count % 2 ===0) ? "x" : "o";        
+        for (let i=0; i<length; i=i+3){           
+            if(this.state.cells[i] === s && this.state.cells[i+1] === s && this.state.cells[i+2] === s){                
+                this.setState({user: s})
+                this.setState({win: 1});
+                return (this.state.win);
+            }
+        }
+    }
 
     checkY =()=>{
         let length = this.lengthArrCells();
@@ -46,9 +44,17 @@ export default class extends Component{
         }
     }
 
-    checkDiagonals =()=>{
-
-    }
+    // checkDiagonals =()=>{
+    //     let length = this.lengthArrCells();
+    //     let s = (this.state.count % 2 ===0) ? "x" : "o";
+    //     for (let i=(this.state.cells.length-1)/2; i<length; i++){
+    //         if(this.state.cells[i] === s && this.state.cells[i+4] === s && this.state.cells[i-4] === s){
+    //             this.setState({user: s})
+    //             this.setState({win: 1});
+    //             return (this.state.win);
+    //         }
+    //     }
+    // }
     
     clickHandler = (id) => {
         const newState = update(this.state, {count:{$set: id}});
@@ -59,8 +65,9 @@ export default class extends Component{
             this.setState({count: this.state.count+1});
             this.setState({cells: curSquare});
         }
-        //this.checkX();
+        this.checkX();
         this.checkY();
+        //this.checkDiagonals();
     }
 
     render(){
